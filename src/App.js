@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import TodoList from './Todo/TodoList';
+
 
 function App() {
+  let todos = [
+    {id: 1, completed: false, title: 'Buy bread'},
+    {id: 2, completed: false, title: 'Buy butter'},
+    {id: 3, completed: false, title: 'Buy milk'},
+  ]
+
+  function changeCompletedState(id){
+    todos = todos.map(todo => {
+      if(todo.id === id){
+        todo.completed = !todo.completed
+      }
+      return todo
+    })
+    
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <h1>React Tutorial</h1>
+      <TodoList todos={todos} sendDataOnToggle={changeCompletedState}/>
     </div>
   );
 }
