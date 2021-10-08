@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TodoList from "./Todo/TodoList";
 import Context from "./Context";
 import AddTodo from "./Todo/AddTodo";
@@ -21,26 +21,38 @@ function App() {
     );
   }
 
+  // useEffect(() => {
+  //   fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
+  //     .then((response) => response.json())
+  //     .then((todos) => setTodos(todos));
+  // }, []);
 
-  function removeTodo(id){
-    setTodos(todos.filter(todo => todo.id !== id))
+  function removeTodo(id) {
+    setTodos(todos.filter((todo) => todo.id !== id));
   }
 
-  function addTodo(title){
-    setTodos(todos.concat([{
-      title,
-      id: Date.now(),
-      completed: false
-    }]))
+  function addTodo(title) {
+    setTodos(
+      todos.concat([
+        {
+          title,
+          id: Date.now(),
+          completed: false,
+        },
+      ])
+    );
   }
 
   return (
-    <Context.Provider value={{removeTodo}}>
+    <Context.Provider value={{ removeTodo }}>
       <div className="wrapper">
-        <h1>React Tutorial</h1>
-        <AddTodo onCreate={addTodo}/>
-        {todos.length ? <TodoList todos={todos} sendDataOnToggle={changeCompletedState} /> : <p className="no-todos">No To-dos!</p>}
-        
+        <h1>React To-Do App</h1>
+        <AddTodo onCreate={addTodo} />
+        {todos.length ? (
+          <TodoList todos={todos} sendDataOnToggle={changeCompletedState} />
+        ) : (
+          <p className="no-todos">No To-dos!</p>
+        )}
       </div>
     </Context.Provider>
   );
