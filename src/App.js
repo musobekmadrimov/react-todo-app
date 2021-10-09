@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TodoList from "./Todo/TodoList";
 import Context from "./Context";
-// import Loader from "./Loader";
+import Loader from "./Loader";
 import Modal from "./Modal/Modal";
 
 const AddTodo = React.lazy(
@@ -15,7 +15,7 @@ const AddTodo = React.lazy(
 
 function App() {
   const [todos, setTodos] = useState([]);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   function changeCompletedState(id) {
     setTodos(
@@ -28,16 +28,16 @@ function App() {
     );
   }
 
-  // useEffect(() => {
-  //   fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
-  //     .then((response) => response.json())
-  //     .then((todos) => {
-  //       setTimeout(() => {
-  //         setTodos(todos);
-  //         setLoading(false);
-  //       }, 2000);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
+      .then((response) => response.json())
+      .then((todos) => {
+        setTimeout(() => {
+          setTodos(todos);
+          setLoading(false);
+        }, 2000);
+      });
+  }, []);
 
   function removeTodo(id) {
     setTodos(todos.filter((todo) => todo.id !== id));
@@ -63,10 +63,10 @@ function App() {
         <React.Suspense fallback={<p>Lazy Loading Component...</p>}>
           <AddTodo onCreate={addTodo} />
         </React.Suspense>
-        {/* {loading && <Loader />} */}
+        {loading && <Loader />}
         {todos.length ? (
           <TodoList todos={todos} sendDataOnToggle={changeCompletedState} />
-        ) : (
+        ) : loading ? null : (
           <p className="no-todos">No To-dos!</p>
         )}
       </div>
