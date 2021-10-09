@@ -1,0 +1,121 @@
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.whoCreatedButton{
+    display: block;
+    height: 50px;
+    width: 150px;
+    background-color: crimson;
+    color: #fff;
+    font-weight: 700;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.modal-body{
+    padding: 2rem 2rem 2rem 2rem;
+    width: 400px;
+    border-radius: 10px;
+    background: #fff;
+    /* height: 270px; */
+    position: absolute;
+}
+
+.wrapper .modal-body h1{
+    margin-bottom: 20px;
+}
+
+.socialLinks{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.socialLinks a{
+    text-decoration: none;
+    color: #1e1f20c0;
+}
+
+.facebook-icon:hover{
+    color: #3b5998 ;
+}
+
+.twitter-icon:hover{
+    color: #00acee;
+}
+
+.youtube-icon:hover{
+    color: #c4302b;
+}
+
+.instagram-icon:hover{
+    color: #C13584;
+}
+
+.github-icon:hover{
+    color: #333;
+}
+
+.modalCloseButton{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: crimson;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.modalCloseButton:hover{
+    background-color: #ff0000;
+}
+
+.modal-footer{
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+}
+
+.modal-footer a{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: #3b5998;
+    color: #fff;
+    font-weight: 500;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+
+/* Responsiveness */
+
+
+@media screen and (max-width: 420px) {
+    .modal-body{
+        width: 90%;
+    }
+}

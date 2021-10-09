@@ -21,7 +21,7 @@ function AddTodo(props) {
         onChange={(event) => setValue(event.target.value)}
       />
       <button type="submit" className="custom-btn btn-6">
-        Add todo
+        
       </button>
     </form>
   );

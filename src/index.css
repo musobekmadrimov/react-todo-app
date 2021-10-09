@@ -12,14 +12,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-image: radial-gradient(
-    circle 780.6px at 10% 20%,
+  background-image: linear-gradient(
+    to right,
     rgba(133, 255, 189, 1) 0%,
     rgba(255, 251, 125, 1) 90.7%
   );
   width: 100vw;
-  height: 200vh;
+  overflow-x: hidden;
+  background-position: center;
   background-repeat: repeat;
+  background-size: cover;
 }
 
 code {
@@ -32,11 +34,14 @@ code {
   margin: 0 auto;
   width: 90%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.wrapper h1{
+.wrapper h1 {
   text-align: center;
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .list {
@@ -65,7 +70,7 @@ margin-bottom: 10px;
   word-break: break-all;
 }
 
-.checkboxDiv{
+.checkboxDiv {
   width: 25px;
   height: 25px;
   display: flex;
@@ -177,6 +182,7 @@ margin-bottom: 10px;
   width: 100%;
   padding: 8px;
   font-size: 20px;
+  line-height: 100%;
   outline: none;
   border: 2px solid rgb(7, 153, 73);
   background: rgba(255, 255, 255, 0.7);
@@ -184,9 +190,10 @@ margin-bottom: 10px;
 
 .addForm button {
   width: 120px;
+  height: 100%;
   position: absolute;
-  top: 1px;
-  right: 1px;
+  top: 0px;
+  right: 0px;
   padding: 9px;
   font-size: 16px;
   border: none;
@@ -194,13 +201,21 @@ margin-bottom: 10px;
   cursor: pointer;
   color: #fff;
   font-weight: 900;
-  letter-spacing: 2px;
+  letter-spacing: 0px;
   transition: all 0.5s ease;
 }
 
+.addForm button::after {
+  content: "Add todo";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
 .addForm button:hover {
-  letter-spacing: 0px;
-  content: attr(name);
+  letter-spacing: 1.5px;
 }
 
 @-webkit-keyframes scale-up-bottom {
@@ -229,5 +244,82 @@ margin-bottom: 10px;
     transform: scale(1);
     -webkit-transform-origin: 50% 100%;
     transform-origin: 50% 100%;
+  }
+}
+
+/* Loader Styles */
+
+.loader {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.lds-hourglass {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-hourglass:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 32px solid rgb(0, 141, 0);
+  border-color: rgb(0, 141, 0) transparent rgb(0, 141, 0) transparent;
+  animation: lds-hourglass 1.2s infinite;
+}
+@keyframes lds-hourglass {
+  10% {
+    border: 32px solid rgb(255, 40, 40);
+    border-color: rgb(255, 40, 40) transparent rgb(255, 40, 40) transparent;
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    border: 32px solid rgb(255, 40, 40);
+    border-color: rgb(255, 40, 40) transparent rgb(255, 40, 40) transparent;
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    border: 32px solid rgb(0, 141, 0);
+    border-color: rgb(0, 141, 0) transparent rgb(0, 141, 0) transparent;
+    transform: rotate(1800deg);
+  }
+}
+
+/* =================== */
+
+/* Responsiveness */
+
+@media screen and (max-width: 600px) {
+  .addForm {
+    width: 95%;
+  }
+
+  .addForm input {
+    font-size: 14px;
+  }
+
+  .addForm button {
+    width: 40px;
+    height: inherit;
+    font-size: 14px;
+    position: relative;
+  }
+
+  .addForm button::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: "+";
+    font-size: 20px;
+    font-weight: 900;
   }
 }
